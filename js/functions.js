@@ -1,3 +1,21 @@
+//connect
+web3 = new Web3(window.ethereum);
+ethereum.request({ method: 'eth_requestAccounts' });
+var scribbleChef;
+const getAccount = async () => {
+try {
+const myAccounts = await ethereum.request({ method: 'eth_accounts' });
+scribbleChef = myAccounts[0];
+console.log("master account: " + scribbleChef);
+return myAccounts[0];
+} catch (err) {
+console.log(err);
+}
+}
+
+getAccount();
+ethereum.request({ method: 'eth_accounts' }).defaultAccount = ethereum.request({ method: 'eth_accounts' }).accounts[0];
+
 // Mint
 function mintScribble() {
     var amount1 = $("#amount1").val();
